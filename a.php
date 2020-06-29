@@ -4,7 +4,6 @@ include "function.php";
 ulang:
 // function change(){
 echo color("blue","                     WELCOME\n");
-echo color("red","             : ".('[d-m-Y] [H:i:s]')."   \n");
 echo color("red","                             \n");
 echo color("green","                  Format Kode 62*** \n");
         $nama = nama();
@@ -49,6 +48,20 @@ echo color("green","                  Format Kode 62*** \n");
         echo color("white","+] Your access token : ".$token."\n\n");
         save("token.txt",$token); 
         echo color("white","\n▬▬▬▬▬▬▬▬▬▬▬▬CLAIM VOUCHER▬▬▬▬▬▬▬▬▬▬▬▬");
+        echo "\n".color("white","CLAIM 1..");
+        echo "\n".color("white"," Please wait");
+        for($a=1;$a<=3;$a++){
+        echo color("white",".");
+        sleep(5);
+        }
+        $code1 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"EATLAH"}');
+        $message = fetch_value($code1,'"message":"','"');
+        if(strpos($code1, 'Promo kamu sudah bisa dipakai')){
+        echo "\n".color("green","Message: ".$message);
+        goto gocar;
+        }else{
+        echo "\n".color("white"," Message: ".$message);
+	gocar:
         echo "\n".color("white"," CLAIM 2.. ");
         echo "\n".color("white"," Please wait");
         for($a=1;$a<=3;$a++){
@@ -72,7 +85,7 @@ echo color("green","                  Format Kode 62*** \n");
         $code1 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"PESANGOFOOD2206"}');
         $message = fetch_value($code1,'"message":"','"');
         echo "\n".color("white"," Message: ".$message);
-        echo "\n".color("white"," HAKAN.");
+        echo "\n".color("blue"," HAKAN.");
         echo "\n".color("white"," Please wait");
         for($a=1;$a<=3;$a++){
         echo color("white",".");
